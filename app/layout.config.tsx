@@ -1,4 +1,13 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import { GithubIcon } from 'lucide-react';
+
+import { Space_Grotesk } from 'next/font/google'
+
+const spaceGrotesk = Space_Grotesk({
+  weight: 'variable',
+  subsets: ['latin'],
+  preload: true
+})
 
 /**
  * Shared layout configurations
@@ -9,25 +18,13 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
  */
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: (
-      <>
-        <svg
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Logo"
-        >
-          <circle cx={12} cy={12} r={12} fill="currentColor" />
-        </svg>
-        My App
-      </>
-    ),
+    title: <div style={spaceGrotesk.style}>~/zhaoworks</div>
   },
   links: [
     {
-      text: 'Documentation',
-      url: '/docs',
-      active: 'nested-url',
-    },
+      icon: <GithubIcon />,
+      text: 'Repositórios no GitHub',
+      url: 'https://github.com/zhaoworks'
+    }
   ],
 };
