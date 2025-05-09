@@ -1,0 +1,97 @@
+---
+title: Desenvolvedor Fullstack
+full: true
+---
+
+### Contexto
+
+O **Hansik Seoul** é um restaurante coreano tradicional, famoso por seus pratos autênticos e ingredientes frescos importados diretamente da Coreia do Sul.
+
+Ele atrai tanto amantes da culinária asiática quanto clientes curiosos em experimentar sabores únicos. Com o crescimento do restaurante, os garçons enfrentam dificuldades para anotar os pedidos manualmente, a cozinha não consegue acompanhar a demanda e a administração carece de relatórios detalhados sobre quais pratos são mais vendidos e qual o faturamento de cada item.
+
+### Projeto
+
+![Hansik Seoul](/trials/441952251-e7299fe7-f2a6-43b2-a6be-dd390e6aee60.png)
+
+Para resolver os problemas do restaurante, apresentaremos um novo **sistema de gestão de pedidos** para o **Hansik Seoul**, que permita o restaurante a atender as necessidades dos garçons, a cozinha e a administração.
+
+1. Os garçons poderão registrar pedidos para as mesas reservadas através de uma interface responsiva.
+2. A cozinha poderá atualizar os status dos pedidos. (Recebido → Em Preparo → Pronto → Entregue)
+3. A administração poderá gerar relatórios detalhados por prato, mostrando o faturamento total de cada item em um período selecionado, com exportação para Excel ou PDF.
+
+A equipe de design preparou uma interface de inspiração que pode ser utilizada como referência. Algumas telas ainda não estão finalizadas, então o foco deve estar nas funcionalidades essenciais.
+
+[**– Visualizar Interface** (figma.com)](https://www.figma.com/design/tDQOat8CrZ62wD1Uoa1ued/Hansik-Seoul)
+
+### Requisitos da API
+
+Para o teste técnico, será necessário criar uma **API REST**, que siga os padrões **Restful**.
+
+As seguintes livrarias são recomendadas (mas não obrigatórias) para construir a API:
+
+- **Fastify** – API REST performática.
+- **Zod** – Validação de dados.
+
+Para maiores funcionalidades, é obrigatório usar as livrarias:
+
+- **Drizzle ORM + PostgreSQL** – Banco de dados.
+- **ExcelJS** – Geração de Relatórios. (Excel)
+
+A API será responsável por:
+
+- [x] Registrar pedidos e reservas feitas pelos garçons.
+- [x] Gerenciar os status dos pedidos.
+- [x] Fornecer relatórios detalhados sobre vendas por prato e período.
+
+<Callout title="Em caso de dúvidas sobre a API, você pode consultar a nossa documentação aberta:">
+[**– Manual de Desenvolvimento de APIs** (opendocs.zhaoworks.com)](https://opendocs.zhaoworks.com/handbook/backend/introduction) 
+</Callout>
+
+### Requisitos da Interface
+
+A interface do sistema será construída utilizando **React**, o objetivo da interface é ser consistente e responsiva, permitindo aos usuários acessar o sistema de forma fácil e intuitiva.
+
+As seguintes livrarias deverão ser utilizadas para a interface:
+
+- **Radix UI** – Componentes de interface do usuário.
+- **Tailwind** – Framework CSS.
+- **TanStack Query** – Framework de consulta de dados.
+- **Zustand** – Gerenciamento de estado.
+
+A interface deve atender os seguintes requisitos:
+
+- **Responsiva** – Os garçons utilizam um tablet para fazer o atendimento, enquanto a cozinha e a administração utilizam computadores.
+- **Consistente** – O visual da interface deve ser consistente.
+
+<Callout title="Em caso de dúvidas sobre a API, você pode consultar a nossa documentação aberta:">
+[**– Manual de Desenvolvimento de Interfaces** (opendocs.zhaoworks.com)](https://opendocs.zhaoworks.com/handbook/ui/introduction)
+</Callout>
+
+### Critérios de Avaliação
+
+Após a entrega do sistema, o sistema desenvolvido será avaliado de **1** até **5 pontos** nas seguintes categorias:
+
+| Categoria | Descrição | Peso |
+| --- | --- | --- |
+| 1. **Boas Práticas** | O código deve ser estruturado em termos de boas práticas, especialmente em relação a repetição (DRY) e organização do código e arquitetura do projeto. | 20% |
+| 2. **Regra de Negócio** | A lógica da regra de negócio implementada precisa atender o negócio do cliente, garantindo situações inesperadas. | 40% |
+| 3. **Interface e UI** | O sistema deve atender todos os usuários, desde o garçom até a administração. | 30% |
+| 4. **Manutenção** | Os sistemas estão sempre em evolução, acompanhando as melhores práticas de manutenção. | 10% |
+
+### Instruções de Entrega e Submissões
+
+#### Instruções
+
+O teste técnico é 100% aberto, qualquer pessoa pode enviar suas submissões através de um **Pull Request**.
+
+#### Submissões
+
+Após finalizar o desenvolvimento do projeto, crie um **Pull Request** para o repositório principal do teste técnico e adicione abaixo a data da entrega, o seu nome e o link do seu repositório.
+
+| Data | Nome | Repositório | Avaliação | 
+| --- | --- | --- | --- |
+
+{/* Exemplo: */}
+{/* | YYYY-MM-DD | user | https://github.com/user/hansik-seoul | - | */}
+
+Deixe o campo `Avaliação` limpo, o seu **Pull Request** será usado para adicionar comentários da avaliação, após isto, adicionaremos uma nota final com base nos [critérios de avaliação](#critérios-de-avaliação) ao seu projeto.
