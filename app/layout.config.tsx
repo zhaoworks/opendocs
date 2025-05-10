@@ -1,7 +1,7 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { GithubIcon } from 'lucide-react';
 
 import { Space_Grotesk } from 'next/font/google'
+import { GithubIcon } from 'lucide-react';
 
 const spaceGrotesk = Space_Grotesk({
   weight: 'variable',
@@ -18,8 +18,9 @@ const spaceGrotesk = Space_Grotesk({
  */
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: <div style={spaceGrotesk.style}>~/zhaoworks</div>
+    title: <div style={spaceGrotesk.style}>~/zhaoworks</div>,
   },
+  githubUrl: 'https://github.com/zhaoworks/opendocs',
   links: [
     {
       icon: <GithubIcon />,
