@@ -1,0 +1,5 @@
+{
+    "root": true,
+    "title": "Padrões de Código",
+    "files": ["introduction", "grimoire", "early-returns"]
+}
