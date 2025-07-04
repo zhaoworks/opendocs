@@ -1,3 +1,248 @@
 ---
-title: "02: Conventional Commits"
+title: "Conventional Commits"
 ---
+
+Você notou que ao abrir um **Pull Request**, o seu histórico de commits se parecem assim:
+
+![Commitmess](/git/commitmess.png)
+
+Se sim, o **seu time ainda não conhece** ou usa os **Conventional Commits** da forma correta.
+
+## O que é Conventional Commits?
+
+O **Conventional Commits** é um conjunto de regras e padrões para escrever **mensagens de commit padronizadas e mais claras**, criando uma **leitura fácil** e permitindo **ferramentas automatizadas** como [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog) aproveitem esse formato para criar changelogs automáticos.
+
+A ideia por trás do **Conventional Commits** é:
+
+- Deixar claro **qual tipo de mudança** foi feita e onde.
+- Trazer alguma **consistência** para os histórico de commits.
+- Facilitar **entender a alteração**, mesmo quando há mensagens confusas.
+
+### Entendendo o formato do Conventional Commits
+
+O formato dos **Conventional Commits** é bem simples:
+
+```py
+<tipo>(<contexto>): <descrição>
+```
+
+- `<tipo>`: define qual tipo de alteração, como `feat`, `chore`... [(veja os tipos aqui)](#tipos)
+- `(<contexto>)`: descreve o contexto dessa alteração. (**é opcional**)
+- O caracter `:` **separa o tipo e contexto da descrição**, assim fica uma divisão mais clara.
+- `<descrição>`: a mensagem do commit.
+
+Todos os elementos da mensagem de commit (tipos, contextos e até mesmo a descrição) **devem** ser escritos em **minúsculas**.
+Somente a `<descrição>` pode conter letras em maiúsculas quando houver uma necessidade.
+
+## Como escolher o tipo de commit?
+
+Cada repositório pode ter [seus próprios padrões para tipos](https://www.conventionalcommits.org/en/v1.0.0/#do-all-my-contributors-need-to-use-the-conventional-commits-specification:~:text=types%20other%20than%20fix%3A%20and%20feat%3A%20are%20allowed), nós seguimos a seguinte tabela:
+
+| Tipo       | Quando Usar                                                                                   |
+|------------|-----------------------------------------------------------------------------------------------|
+| `feat`     | Adicionada uma nova funcionalidade ao projeto                                                 |
+| `fix`      | Corrige algo que estava causando erro                                                         |
+| `chore`    | Altera o arquivos de configuração, adiciona dependências ou impacta o processo de build       |
+| `docs`     | Altera apenas a documentação? (readme e comentários de função estão incluídos)                |
+| `style`    | Modifica a formatação do código (espaços, formatação)                                         |
+| `refactor` | Refatora código **sem alterar comportamento**                                                 |
+| `test`     | Adiciona ou modifica os testes do projeto                                                     |
+| `perf`     | Melhora desempenho ou otimiza algo                                                            |
+
+> Em geral, a maioria dos commits em repositórios que usam **Conventional Commits** serão do tipo `feat` ou `fix`. Em caso de dúvidas, uma dica é ver se o seu commit se encaixa em uma dessas duas categorias, caso contrário, também pode ser um `chore` ou um `refactor`.
+
+#### E os contextos?
+
+O `<contexto>` é uma palavra-chave opcional que define **onde** a alteração foi feita, isso ajuda a segmentar melhor os seus commits. Especialmente quando estamos lidando com projetos grandes ou monorepos.
+
+Imagine que você tem um repositório com dois pacotes:
+
+```sql
+packages/
+  /ui - tudo relacionado à interface.
+  /services - a camada lógica do projeto.
+```
+
+Se a alteração afeta apenas a camada de lógica, a mensagem pode refletir isso claramente:
+- `feat(service): adiciona regra de negócio para emissão de nota`
+
+Se a mudança afetar múltiplas partes do sistema, como **interface e lógica**, você pode simplesmente usar:
+- `feat: integrate UI with new invoice rule`
+
+> Você também pode usar uma palavra-chave para destravar a ambiguidade da sua mensagem, destacando **não só o que foi feito**, mas também **onde foi feito**.
+
+> O contexto em outros momentos é usado para segmentar os seus commits, o que pode ser útil no futuro ou para ferramenta automaticas.
+
+## Criando boas mensagens de commit
+
+Apenas **usar uma convenção não cria automaticamente boas mensagens de commit**. Por isso,
+além da estrutura dos commits também é necessário mensagens que descrevam a alteração feita.
+
+### Use o imperativo
+
+A mensagem de commit deve ser escrita no **modo imperativo**, como se estivesse dando uma instrução ou comando.
+
+- **Substitua termos no passado** como `updated`, `changed`, `added`...
+- Pelo seu **imperativo** correspondente `update`, `change`, `add`...
+
+### Seja claro e objetivo
+
+Ser claro é **expressar de maneira fácil**, **sem deixar dúvidas na sua comunicação**.
+
+| Não ser claro              | Ser Claro                                                |
+|------------------------|--------------------------------------------------------------|
+| "fix stuff"            | fix: broken alignment in AI + icon button                    |
+| update endpoint        | feat: add `taxId` field to `/v1/users` endpoint              |
+| refactor taxations     | refactor: extract taxations from billing models              |
+| general improvements   | perf: reduce load time on first render                       |
+| changes                | chore(deps): bump `@zhaoworks/fetch` to v1.0.0               |
+
+Ser objetivo é **ir direto ao ponto**, **sem se estender muito para prolongar a sua mensagem**.
+
+| Não ser objetivo                                            | Ser Objetivo                                               |
+|-------------------------------------------------------------|------------------------------------------------------------|
+| fix: i fixed a problem that was causing a layout issue      | fix: layout issue on mobile navbar                         |
+| feat: this commit adds the feature that lets users log in   | feat: add login feature                                    |
+| chore: updated some things in the dependencies list         | chore(deps): update @zhaoworks/fetch and @zhaoworks/scopes |
+| refactor: improved the overall structure of the codebase    | refactor: split utils into separate modules                |
+| docs: added some new information to the README              | docs: update README with setup instructions                |
+
+### Use descrições curtas
+
+Tente manter a sua mensagem de commit o mais curta possível, **sem deixar de ser clara**.
+
+Caso haja detalhes, para incluir na sua mensagem de commit, use o comando `git commit` ou `git commit -m "<titulo>" -m "descrição"`.
+
+```py
+chore(lint): ignore noAccumulatingSpread globally
+
+Disabling lint/performance/noAccumulatingSpread prevents false positives since this project requires reading more than performance.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On bser ranchamain
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   biome.json
+#
+```
+
+### Dicas que podem te ajudar a criar mensagens de commits
+
+- **Seja mais explicito** em quais alterações você fez.
+- Sua mensagem de commit deve ser **curta**, mas sem perder a clareza.
+- Tente encontrar **palavras chaves** que destaque as alterações que você ser fea.
+- **Evite usar palavras genéricas** como `fix`, `update`, `add`. *(cuidado!)*
+  - Algumas delas já estão inclusas no tipo de commit que você está fazendo.
+  - Use apenas quando achar que é necessário.
+
+## E se eu fizer um commit com uma mensagem errada?
+
+Se você fizer um commit com uma mensagem errada, não se preocupe, ainda dá para corrigir!
+
+#### Se o commit ainda não tiver sido enviado para o repositório:
+
+Use o comando `git commit --amend`, ele irá **abrir o seu editor de texto para que você possa fazer a correção**.
+
+#### Se o commit foi enviado, mas você está trabalhando sozinho em um branch local:
+
+Use `git rebase -i HEAD~1`, substitua `pick` por `reword`, após salvar e fechar o arquivo, você poderá **editar a mensagem do último commit**.
+
+Caso tenha feito duas ou mais alterações, você pode trocar o `HEAD~1` para `HEAD~n`, onde `n` é a distância do último commit.
+
+#### Se há algum `commitlint` (remoto ou local) está configurado:
+
+Agradeça, você está seguro! Provavelmente você verá uma mensagem como esta:
+
+```sh
+$ git commit -m "foo: this will fail"
+No staged files match any of provided globs.
+⧗   input: foo: this will fail
+✖   type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
+
+✖   found 1 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+husky - commit-msg script failed (code 1)
+```
+
+Apenas siga suas instruções e o seu commit estará registrado.
+
+#### Se caso nenhum dos últimos casos for o seu...
+
+Erros acontecem, e nem sempre é possível (ou necessário) corrigir mensagens antigas. O importante é aprender com o processo e manter o hábito de boas práticas nos próximos commits.
+
+> O histórico é para facilitar o trabalho do time, então, pequenas falhas não são o fim do mundo, o mais importante é manter o hábito de melhorar continuamente.
+
+### Usando Git Hooks para evitar commits que não seguem convenções
+
+Se você quer evitar que o seu repositório tenha mensagens de commits fora das convenções do **Conventional Commits**, você pode configurar um [Git Hook](https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks) usando [`lefthook`](https://github.com/evilmartians/lefthook) (ou [`husky`](https://typicode.github.io/husky/)) para identificar e recusar mensagens de commits que fogem do padrão antes mesmo que eles sejam criados no seu repositório.
+
+Para isso, Nós usaremos o `lefthook`, que é [language-agnostic](https://www.wikiwand.com/en/articles/Language-agnostic) e bem fácil de integrar. Para o linting, usaremos o pacote [`@commitlint/cli`](https://www.npmjs.com/package/@commitlint/cli).
+
+Vamos começar pela configuração do **commitlint**, instale as seguinte dependências no seu projeto.
+
+```sh
+$ bun add @commitlint/cli # instala o cli que verifica os commits
+$ bun add @commitlint/config-conventional # instala o conjunto de regras que usaremos
+```
+
+Agora, crie um arquivo chamado `.commitlintrc.json` na raiz do do seu projeto.
+
+```json
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+```
+
+Para verificar se está tudo funcionando, execute o comando `echo "check commitlint" | bun commitlint`, a saída esperada será algo como:
+
+```sh
+$ echo "check commitlint" | bun commitlint
+⧗   input: check commitlint
+✖   subject may not be empty [subject-empty]
+✖   type may not be empty [type-empty]
+
+✖   found 2 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+error: "commitlint" exited with code 1
+```
+
+Isso indica que o `commitlint` está funcionando e **falhará para mensagens de commit inválidas**.
+
+Para usar Git Hooks no seu repositório, instale o CLI do **Lefthook**. *(você precisa ter a linguagem [Go](https://go.dev/) instalada)*.
+
+```sh
+$ go install github.com/evilmartians/lefthook@latest
+```
+
+Após instalado, dentro do seu repositório Git local, execute:
+
+```sh
+$ lefthook install
+```
+
+Isso criará `lefthook.yml` na raíz do seu projeto, edite o arquivo adicionando conteúdo a seguir:
+
+```yml
+# O lefthook atua como um "callback" para seus comandos do git.
+# O commit-msg atua antes do seu commit ser registrado.
+commit-msg:
+  jobs:
+    - name: test
+      run: bun commitlint --edit {1} # ou instale localmente no seu projeto com npm/yarn/pnpm
+```
+
+Agora, ao executar qualquer `git commit`, o [`lefthook`](https://github.com/evilmartians/lefthook) vai automaticamente executar o [commitlint](https://commitlint.js.org/) para cada tentativa de commit. Assim, todas as mensagens de commits que não seguirem o [Conventional Commits](https://www.conventionalcommits.org/) serão barrados com uma mensagem de erro.
+
+## Relacionados
+
+Caso tenha se interessado ainda mais pelo assunto, separamos referências que podem te ajudar a estudar mais sobre:
+
+- https://www.conventionalcommits.org/
+- https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks
+- https://commitlint.js.org/
+- https://www.wikiwand.com/en/articles/Language-agnostic

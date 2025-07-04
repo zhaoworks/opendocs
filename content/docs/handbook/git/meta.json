@@ -1,5 +1,5 @@
 {
     "root": true,
     "title": "Repositórios Git",
-    "files": ["introduction", "conventional-commits"]
+    "files": ["conventional-commits"]
 }
